@@ -62,12 +62,12 @@ public class Conexion  {
     }
 
     public String consultarPorIdioma(String titulo) throws IOException, InterruptedException {
-        return this.consulta("books?languages=" + URLEncoder.encode(titulo, "UTF-8"));
+        return this.consulta("books/?languages=" + URLEncoder.encode(titulo, "UTF-8"));
     }
 
 
     public String consultarPorCategoria(String titulo) throws IOException, InterruptedException {
-        return this.consulta("books?topic=" + URLEncoder.encode(titulo, "UTF-8"));
+        return this.consulta("books/?topic=" + URLEncoder.encode(titulo, "UTF-8"));
     }
 
 }
