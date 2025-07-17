@@ -13,27 +13,61 @@ import java.io.UnsupportedEncodingException;
 
 public class Conexion  {
     private HttpClient client;
-    private String direccion;
+    private final  String DIRECCION = "https://gutendex.com/";
+    private HttpResponse<String> response;
+    private HttpRequest request;
 
 
     public Conexion() {
         this.client = HttpClient.newHttpClient();
-        this.direccion ="https://gutendex.com/books/";
+    }
+
+    private HttpClient getClient() {
+        return client;
+    }
+
+    private String getDireccion() {
+        return DIRECCION;
+    }
+
+    private void  setRequest(String url){
+            this.request = HttpRequest.newBuilder()
+                    .uri(URI.create(this.getDireccion() +url))
+                    .build();
+    }
+
+    private HttpRequest getRequest() {
+        return request;
+    }
+
+    private void setResponse() throws IOException, InterruptedException {
+        this.response = this.getClient().send(
+                this.getRequest(),
+                HttpResponse.BodyHandlers.ofString()
+        );
+    }
+
+    private HttpResponse<String> getResponse() {
+        return response;
+    }
+
+    private String consulta(String url) throws IOException, InterruptedException {
+        this.setRequest(url);
+        this.setResponse();
+        return this.getResponse().body();
     }
 
     public String consultarPorNombre(String titulo) throws IOException, InterruptedException {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(direccion + "?search=" + URLEncoder.encode(titulo, "UTF-8")))
-                    .build();
-            HttpResponse<String> response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
-            return(response.body());
-
-        } catch (UnsupportedEncodingException e) {
-            System.err.println("Error de codificación: " + e.getMessage());
-            return("");
-        }
-
+        return this.consulta("books/?search=" + URLEncoder.encode(titulo, "UTF-8"));
     }
+
+    public String consultarPorIdioma(String titulo) throws IOException, InterruptedException {
+        return this.consulta("books?languages=" + URLEncoder.encode(titulo, "UTF-8"));
+    }
+
+
+    public String consultarPorCategoria(String titulo) throws IOException, InterruptedException {
+        return this.consulta("books?topic=" + URLEncoder.encode(titulo, "UTF-8"));
+    }
+
 }
