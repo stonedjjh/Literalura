@@ -33,6 +33,7 @@ public class LiteraturaApplication  implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		MapeadorJson mapeador = new MapeadorJson();
 		List<Libro> libros = new ArrayList<>();
+		Libro libro;
 		MenuConsola menuConsola = new MenuConsola();
 		Integer opcion;
 		ServicioConsultaLibros servicioConsultaLibros = new ServicioConsultaLibros();
@@ -48,10 +49,12 @@ public class LiteraturaApplication  implements CommandLineRunner {
 						String entradaDato = teclado.nextLine();
 						String resultados = servicioConsultaLibros.consultarLibroPorNombre(entradaDato);
 						LibrosDTO librosDto = mapeador.obtenerDatos(resultados, LibrosDTO.class);
-						libros = librosDto.libros().stream()
-								.map(l -> new Libro(l))
-								.collect(Collectors.toList());
-						libros.forEach(System.out::println);
+						if (librosDto.libros().size() != 0){
+							System.out.println(librosDto.libros().get(0));
+							libros.add(new Libro(librosDto.libros().get(0)));
+						} else {
+							System.out.println("Libro no encontrado");
+						}
 						break;
 					}
 					case 2: {
@@ -73,6 +76,10 @@ public class LiteraturaApplication  implements CommandLineRunner {
 						libros = librosDto.libros().stream()
 								.map(l -> new Libro(l))
 								.collect(Collectors.toList());
+						libros.forEach(System.out::println);
+						break;
+					}
+					case 5: {
 						libros.forEach(System.out::println);
 						break;
 					}

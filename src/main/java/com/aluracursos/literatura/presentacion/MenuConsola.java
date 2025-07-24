@@ -17,7 +17,8 @@ public class MenuConsola {
         2. Buscar libros por idioma
         3. Buscar libros por categoría
         4. Buscar libros por autores vivos (o que estaban vivos en la fecha)
-        5. Mostrar libros almacenados en la base de datos
+        5. Mostrar libros almacenados en memoria
+        6. Mostrar libros almacenados en memoria
         9. Salir
         ===============================
         Seleccione una opción:
