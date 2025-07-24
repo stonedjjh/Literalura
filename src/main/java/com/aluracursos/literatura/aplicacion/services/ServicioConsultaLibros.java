@@ -22,6 +22,13 @@ public class ServicioConsultaLibros {
         return conexion.consultarPorCategoria(categoría);
     }
 
+    public String consultarAutoresAnio(int anio) throws IOException, InterruptedException {
+        Conexion conexion = new Conexion();
+        return conexion.consultarAutoresVivosAnio(anio);
+    }
+
+
+
 
 
 }

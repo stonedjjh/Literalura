@@ -5,6 +5,7 @@ import com.aluracursos.literatura.aplicacion.dtos.LibroDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -66,5 +67,18 @@ public class Libro {
                 ", autores=" + autores +
                 ", imagen='" + imagen + '\'' +
                 '}';
+    }
+
+    //Se sobreescribio el metodo equal para comprobar si 2 objetos son iguales
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Libro libro = (Libro) o;
+        return Objects.equals(titulo, libro.titulo) && Objects.equals(trama, libro.trama) && Objects.equals(autores, libro.autores) && Objects.equals(imagen, libro.imagen);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, trama, autores, imagen);
     }
 }

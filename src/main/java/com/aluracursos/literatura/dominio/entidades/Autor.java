@@ -3,6 +3,7 @@ package com.aluracursos.literatura.dominio.entidades;
 import com.aluracursos.literatura.aplicacion.dtos.AutorDTO;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Autor {
     private String nombre;
@@ -37,5 +38,18 @@ public class Autor {
                 ", anioNacimiento=" + anioNacimiento +
                 ", anioDefuncion=" + anioDefuncion +
                 '}';
+    }
+
+    //Se sobreescribio el metodo equal para comprobar si 2 objetos son iguales
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor autor = (Autor) o;
+        return Objects.equals(nombre, autor.nombre) && Objects.equals(anioNacimiento, autor.anioNacimiento) && Objects.equals(anioDefuncion, autor.anioDefuncion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, anioNacimiento, anioDefuncion);
     }
 }

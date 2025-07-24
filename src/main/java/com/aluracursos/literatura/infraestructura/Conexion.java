@@ -61,9 +61,16 @@ public class Conexion  {
         return this.consulta("books/?search=" + URLEncoder.encode(titulo, "UTF-8"));
     }
 
+
+    //Se agrego la consulta de autores vivos en un año dado
+    public String consultarAutoresVivosAnio(int anio) throws IOException, InterruptedException {
+        return this.consulta("books/?author_year_start="+anio);
+    }
+
     public String consultarPorIdioma(String titulo) throws IOException, InterruptedException {
         return this.consulta("books/?languages=" + URLEncoder.encode(titulo, "UTF-8"));
     }
+
 
 
     public String consultarPorCategoria(String titulo) throws IOException, InterruptedException {

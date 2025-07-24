@@ -1,3 +1,6 @@
+/*
+* Clase encargada de mostrar el menu en pantalla
+* */
 package com.aluracursos.literatura.presentacion;
 
 import java.util.Scanner;
@@ -13,12 +16,11 @@ public class MenuConsola {
         ===============================
                 Menú Principal
         ===============================
-        1. Buscar libro por título o autor en la API
-        2. Buscar libros por idioma
-        3. Buscar libros por categoría
-        4. Buscar libros por autores vivos (o que estaban vivos en la fecha)
-        5. Mostrar libros almacenados en memoria
-        6. Mostrar libros almacenados en memoria
+        1. Buscar libro por título en la API.
+        2. Buscar libro por autor en la API.
+        3. Mostrar autores vivos en una fecha dada(Se limitara la salida a 20).
+        4. mostrar Autores de los libros almacenados en memoria.        
+        6. Mostrar libros almacenados en memoria        
         9. Salir
         ===============================
         Seleccione una opción:
@@ -36,9 +38,4 @@ public class MenuConsola {
         return this.opcion;
     }
 
-    private void buscarLibroNombre(){
-        System.out.print("ingrese el nombre del titulo a buscar: ");
-        String titulo = this.teclado.nextLine();
-
-    }
 }
