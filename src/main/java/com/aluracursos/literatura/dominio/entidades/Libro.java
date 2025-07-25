@@ -1,29 +1,30 @@
 package com.aluracursos.literatura.dominio.entidades;
 
-import com.aluracursos.literatura.aplicacion.dtos.AutorDTO;
+
 import com.aluracursos.literatura.aplicacion.dtos.LibroDTO;
+import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 
+@Entity
 public class Libro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String titulo;
     private String trama;
-    private List<Autor> autores;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "autor_id")
+    private Autor autores;
     private String imagen;
 
-    public Libro(){};
+    public Libro(){}
 
     public Libro(LibroDTO libro){
         this.titulo = libro.titulo();
         this.trama = libro.trama().toString();
-        this.autores = libro.autores()
-                .stream()
-                .map(a -> new Autor(a))
-                .collect(Collectors.toList());
+        this.autores = new Autor(libro.autores().get(0));
         this.imagen = libro.formatos().get("image/jpeg");
     }
 
@@ -31,28 +32,36 @@ public class Libro {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public Long getId() {
+        return id;
     }
 
     public String getTrama() {
         return trama;
     }
 
-    public void setTrama(String trama) {
-        this.trama = trama;
-    }
-
-    public List<Autor> getAutores() {
+    public Autor getAutores() {
         return autores;
-    }
-
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
     }
 
     public String getImagen() {
         return imagen;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setTrama(String trama) {
+        this.trama = trama;
+    }
+
+    public void setAutores(Autor autores) {
+        this.autores = autores;
     }
 
     public void setImagen(String imagen) {
@@ -69,16 +78,22 @@ public class Libro {
                 '}';
     }
 
-    //Se sobreescribio el metodo equal para comprobar si 2 objetos son iguales
+    //Se sobre-escribió el método equal para comprobar si 2 objetos son iguales
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Libro libro = (Libro) o;
-        return Objects.equals(titulo, libro.titulo) && Objects.equals(trama, libro.trama) && Objects.equals(autores, libro.autores) && Objects.equals(imagen, libro.imagen);
+        if(libro.id == null)
+            return Objects.equals(titulo, libro.titulo) && Objects.equals(trama, libro.trama) && Objects.equals(autores, libro.autores) && Objects.equals(imagen, libro.imagen);
+        else
+            return Objects.equals(id, libro.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, trama, autores, imagen);
+        if (this.id!= null)
+            return Objects.hash(id);
+        else
+            return Objects.hash(titulo, trama, autores, imagen);
     }
 }

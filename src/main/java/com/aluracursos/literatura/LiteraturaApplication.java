@@ -125,7 +125,7 @@ public class LiteraturaApplication  implements CommandLineRunner {
 			System.out.println("No se encontraron autores vivo para la fecha dada");
 	}
 
-	//Se agregro esta opcion para cumplir con el punto 8 de las tareas 
+	//Se agregro esta opcion para cumplir con el punto 8 de las tareas
 	private void opcion4Menu()  {
 		if(!libros.isEmpty())
 			this.libros.stream()

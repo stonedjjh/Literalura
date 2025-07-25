@@ -1,14 +1,27 @@
 package com.aluracursos.literatura.dominio.entidades;
 
 import com.aluracursos.literatura.aplicacion.dtos.AutorDTO;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Autor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nombre;
     private Integer anioNacimiento;
     private Integer anioDefuncion;
+
+    //Se declara la clave foránea
+    @OneToMany(mappedBy = "autores", cascade = CascadeType.ALL)
+    private List<Libro> libros;
+
+
+    public Autor() {
+    }
 
     public Autor(AutorDTO autor){
         this.nombre = autor.nombre();
@@ -16,8 +29,15 @@ public class Autor {
         this.anioDefuncion = autor.anioDefuncion();
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getName() {
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
@@ -25,10 +45,28 @@ public class Autor {
         return anioNacimiento;
     }
 
-
-
     public Integer getAnioDefuncion() {
         return anioDefuncion;
+    }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setAnioNacimiento(Integer anioNacimiento) {
+        this.anioNacimiento = anioNacimiento;
+    }
+
+    public void setAnioDefuncion(Integer anioDefuncion) {
+        this.anioDefuncion = anioDefuncion;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
 
     @Override
@@ -36,7 +74,7 @@ public class Autor {
         return "Autor{" +
                 "nombre='" + nombre + '\'' +
                 ", anioNacimiento=" + anioNacimiento +
-                ", anioDefuncion=" + anioDefuncion +
+                ", anioDefunción=" + anioDefuncion +
                 '}';
     }
 
@@ -45,11 +83,17 @@ public class Autor {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Autor autor = (Autor) o;
-        return Objects.equals(nombre, autor.nombre) && Objects.equals(anioNacimiento, autor.anioNacimiento) && Objects.equals(anioDefuncion, autor.anioDefuncion);
+        if (autor.id != null)
+            return Objects.equals(id, autor.id);
+        else
+            return Objects.equals(nombre, autor.nombre) && Objects.equals(anioNacimiento, autor.anioNacimiento) && Objects.equals(anioDefuncion, autor.anioDefuncion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, anioNacimiento, anioDefuncion);
+        if(this.id == null)
+            return Objects.hash(nombre, anioNacimiento, anioDefuncion);
+        else
+            return Objects.hash(id);
     }
 }
