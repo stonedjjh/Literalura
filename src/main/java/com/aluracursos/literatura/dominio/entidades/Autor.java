@@ -11,12 +11,14 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(unique = true)
     private String nombre;
     private Integer anioNacimiento;
     private Integer anioDefuncion;
 
     //Se declara la clave foránea
-    @OneToMany(mappedBy = "autores", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
     private List<Libro> libros;
 
 
@@ -71,11 +73,11 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Autor{" +
-                "nombre='" + nombre + '\'' +
-                ", anioNacimiento=" + anioNacimiento +
-                ", anioDefunción=" + anioDefuncion +
-                '}';
+        return String.format("""
+            Autor: %s
+            Año de nacimiento: %d
+            Año de defunción: %d
+            """, nombre, anioNacimiento, anioDefuncion);
     }
 
     //Se sobreescribio el metodo equal para comprobar si 2 objetos son iguales

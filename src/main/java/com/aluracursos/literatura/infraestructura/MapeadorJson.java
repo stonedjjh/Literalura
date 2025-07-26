@@ -4,9 +4,11 @@ import com.aluracursos.literatura.aplicacion.dtos.LibroDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class MapeadorJson implements IMapeadorJson {
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -18,6 +20,4 @@ public class MapeadorJson implements IMapeadorJson {
             throw new RuntimeException(e);
         }
     }
-
-
 }

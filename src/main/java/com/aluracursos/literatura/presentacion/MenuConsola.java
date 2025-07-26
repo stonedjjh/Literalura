@@ -13,19 +13,20 @@ public class MenuConsola {
 
         System.out.println(
         """
-        ===============================
-                Menú Principal
-        ===============================
-        1. Buscar libro por título en la API.
-        2. Buscar libro por autor en la API.
-        3. Mostrar autores vivos en una fecha dada(Se limitara la salida a 20).
-        4. mostrar Autores de los libros almacenados en memoria.        
-        6. Mostrar libros almacenados en memoria        
-        9. Salir
-        ===============================
-        Seleccione una opción:
-        """);
-
+        ===========================================================
+        "                       Menú Principal                    "
+        ===========================================================
+        " 1. Buscar libro por título en la API.                   "
+        " 2. Buscar libro por autor en la API.                    "
+        " 3. Mostrar autores vivos en una fecha dada.             "
+        " 4. Mostrar autores de los libros almacenados en memoria."
+        " 5                                                       "
+        " 6. Mostrar libros almacenados en memoria.               "
+        " 7. Guardar libros almacenados en memoria en BD.         "
+        " 8. Mostrar libros en BD filtrando por idioma.           "
+        " 9. Salir                                                " 
+        ===========================================================
+        Seleccione una opción: """);
         while(true) {
             String opcion = this.teclado.nextLine();
             try {

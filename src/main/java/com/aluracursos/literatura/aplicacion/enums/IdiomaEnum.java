@@ -3,9 +3,9 @@ package com.aluracursos.literatura.aplicacion.enums;
 import java.util.Optional;
 
 public enum IdiomaEnum {
-    ES("Español","Espanol","es"),
-    EN("Inglés","ingles","en"),
-    FR("Francés","Frances","fr");
+    ES("español","espanol","es", "spanish"),
+    EN("inglés","ingles","en","english"),
+    FR("francés","frances","fr", "french");
 
     private String idioma[];
 
@@ -24,6 +24,4 @@ public enum IdiomaEnum {
         }
         return Optional.empty();
     }
-
-
 }

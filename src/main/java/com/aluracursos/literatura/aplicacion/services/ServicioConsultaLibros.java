@@ -1,9 +1,11 @@
 package com.aluracursos.literatura.aplicacion.services;
 
 import com.aluracursos.literatura.infraestructura.Conexion;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+@Service
 public class ServicioConsultaLibros {
 
 
@@ -26,9 +28,5 @@ public class ServicioConsultaLibros {
         Conexion conexion = new Conexion();
         return conexion.consultarAutoresVivosAnio(anio);
     }
-
-
-
-
 
 }

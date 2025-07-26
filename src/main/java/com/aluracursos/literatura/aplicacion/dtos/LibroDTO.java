@@ -1,6 +1,7 @@
 package com.aluracursos.literatura.aplicacion.dtos;
 
 
+import com.aluracursos.literatura.aplicacion.enums.IdiomaEnum;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -13,6 +14,7 @@ public record LibroDTO(
         @JsonAlias("title") String titulo,
         @JsonAlias("summaries") List<String> trama,
         @JsonAlias("formats") Map<String, String> formatos,
-        @JsonAlias("authors")List<AutorDTO> autores
+        @JsonAlias("authors")List<AutorDTO> autores,
+        @JsonAlias("languages")List<String> idiomas
         ) {
 }
