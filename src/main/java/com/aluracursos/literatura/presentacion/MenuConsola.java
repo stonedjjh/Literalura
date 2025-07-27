@@ -20,7 +20,7 @@ public class MenuConsola {
         " 2. Buscar libro por autor en la API.                    "
         " 3. Mostrar autores vivos en una fecha dada.             "
         " 4. Mostrar autores de los libros almacenados en memoria."
-        " 5                                                       "
+        " 5  Mostrar libros por idioma en la api                  "
         " 6. Mostrar libros almacenados en memoria.               "
         " 7. Guardar libros almacenados en memoria en BD.         "
         " 8. Mostrar libros en BD filtrando por idioma.           "

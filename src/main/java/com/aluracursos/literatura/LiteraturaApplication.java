@@ -80,7 +80,9 @@ public class LiteraturaApplication  implements CommandLineRunner {
 					}
 					case 7: {
 						List<Libro> aux = libroService.getLibrosConsultados();
-						aux.forEach(l -> libroService.guardarLibro(l));
+						aux.forEach(l ->
+							libroService.guardarLibro(l)
+						);
 						break;
 					}
 					case 8: {

@@ -164,4 +164,8 @@ public class LibroService {
         }
 
     }
+
+    public void eliminarLibro(List<Libro> lista, Libro libro){
+        lista.remove(libro);
+    }
 }

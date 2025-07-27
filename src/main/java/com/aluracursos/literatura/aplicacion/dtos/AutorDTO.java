@@ -12,4 +12,12 @@ public record AutorDTO (
     @JsonAlias("birth_year") Integer anioNacimiento,
     @JsonAlias("death_year") Integer anioDefuncion
 ){
+    @Override
+    public String toString() {
+        return String.format("""
+                nombre = %s
+                año de nacimiento = %s
+                año de defuncion =%s
+                """,nombre(),anioNacimiento(),anioDefuncion());
+    }
 }
